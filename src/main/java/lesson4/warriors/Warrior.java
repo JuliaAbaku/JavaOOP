@@ -1,19 +1,23 @@
 package lesson4.warriors;
 
+import lesson4.protections.Protection;
 import lesson4.weapons.Weapon;
 
 import java.util.Random;
 
-public abstract class Warrior<W extends Weapon> {
+public abstract class Warrior<W extends Weapon, P extends Protection> {
     private String name;
     private int healthPoint;
     public W weapon;
+    public int protection;
+
 
 // Создаем конструктор класса
-    public Warrior(String name, int healthPoint, W weapon) {
+    public Warrior(String name, int healthPoint, W weapon, int protection) {
         this.name = name;
         this.healthPoint = healthPoint;
         this.weapon = weapon;
+        this.protection = protection;
     }
 
 // Создаем геттер
@@ -29,6 +33,10 @@ public abstract class Warrior<W extends Weapon> {
         return weapon;
     }
 
+    public int getProtection(){
+        return protection;
+    }
+
 // Создаем сеттер
     public void setHealthPoint(int healthPoint) {
         this.healthPoint = healthPoint;
@@ -38,7 +46,22 @@ public abstract class Warrior<W extends Weapon> {
         this.weapon = weapon;
     }
 
+    public void setProtection(int protection){
+        this.protection = protection;
+    }
+
 // Метод урона
+
+//    public int hit(){
+//        Random rnd = new Random();
+//        int hitDamage = rnd.nextInt(0, weapon.damage()+1);
+//        hitDamage = hitDamage - protection;
+//        if(hitDamage <= 0){
+//            hitDamage = 0;
+//        }
+//        return hitDamage;
+//    }
+
     public int hit(){
         Random rnd = new Random();
         int hitDamage = rnd.nextInt(0, weapon.damage()+1);
@@ -47,7 +70,13 @@ public abstract class Warrior<W extends Weapon> {
 
 // Метод понижения здоровья
     public void reduceHealth(int damage){
-        healthPoint = healthPoint - damage;
+        damage = damage - protection;
+        if(damage <=0){
+            healthPoint = healthPoint;
+        }
+        else{
+            healthPoint = healthPoint - damage;
+        }
         if (healthPoint < 0){
             healthPoint = 0;
         }
@@ -55,6 +84,6 @@ public abstract class Warrior<W extends Weapon> {
 
     @Override
     public String toString() {
-        return String.format("Имя: %s, Оружие: %s, Здоровье: %d", name, weapon, healthPoint);
+        return String.format("Имя: %s, Оружие: %s, Здоровье: %d, Броня: %d", name, weapon, healthPoint, protection);
     }
 }

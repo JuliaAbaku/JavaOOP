@@ -11,27 +11,28 @@ import lesson4.weapons.rangedWeapons.CrossBow;
 public class Main {
     public static void main(String[] args) {
         Team<Warrior> team1 = new Team<>();
-        team1.add(new Archer("Вася", 100, new Bow()));
-        team1.add(new Infantrymen("Олег", 100, new Axe()));
+        team1.add(new Archer("Вася", 100, new Bow(), 10));
+        team1.add(new Infantrymen("Олег", 100, new Axe(), 10));
+
 
         Team<Archer> teamArcher = new Team<>();
-        teamArcher.add(new Archer("Борис", 100, new CrossBow()));
-        teamArcher.add(new Archer("Витя", 100, new Bow()));
+        teamArcher.add(new Archer("Борис", 100, new CrossBow(), 10));
+        teamArcher.add(new Archer("Витя", 100, new Bow(), 10));
 
         Team<Infantrymen> teamInfantrymen = new Team<>();
-        teamInfantrymen.add(new Infantrymen("Костя",100, new Axe()));
-        teamInfantrymen.add(new Infantrymen("Вова",100, new Sword()));
+        teamInfantrymen.add(new Infantrymen("Костя",100, new Axe(), 10));
+        teamInfantrymen.add(new Infantrymen("Вова",100, new Sword(), 10));
 
         System.out.println(team1);
         System.out.println("\n");
         System.out.println(teamArcher);
         System.out.println("\n");
-        System.out.println(teamInfantrymen);
+//        System.out.println(teamInfantrymen);
 
 
 
 
-        Battle battle1 = new Battle((new Infantrymen("Олег", 100, new Axe())), (new Archer("Витя", 100, new Bow())));
+        Battle battle1 = new Battle((new Infantrymen("Олег", 100, new Axe(), 10)), (new Archer("Витя", 100, new Bow(), 10)));
         battle1.fight();
     }
 

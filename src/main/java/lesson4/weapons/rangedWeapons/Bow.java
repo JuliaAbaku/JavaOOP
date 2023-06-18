@@ -3,7 +3,7 @@ package lesson4.weapons.rangedWeapons;
 public class Bow implements Ranged{
     @Override
     public int damage() {
-        return 5;
+        return 30;
     }
 
     @Override
